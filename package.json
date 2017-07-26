@@ -1,0 +1,20 @@
+{
+  "name": "parse-jobs-scheduler",
+  "version": "1.0.0",
+  "description": "Jobs scheduler for Parse Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon lib/index.js --exec babel-node --presets env"
+  },
+  "author": "jaeggerr",
+  "license": "ISC",
+  "dependencies": {
+    "kue": "^0.11.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "nodemon": "^1.11.0"
+  }
+}
