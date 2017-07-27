@@ -10,7 +10,8 @@
   "author": "jaeggerr",
   "license": "ISC",
   "dependencies": {
-    "kue": "^0.11.6"
+    "cron": "^1.2.1",
+    "parse": "^1.10.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
