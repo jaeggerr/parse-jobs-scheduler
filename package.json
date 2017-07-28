@@ -15,11 +15,11 @@
     "moment": "^2.18.1",
     "parse": "^1.10.0",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.1",
+    "babel-polyfill": "^6.23.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "nodemon": "^1.11.0"
   }
