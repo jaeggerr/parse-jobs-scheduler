@@ -192,6 +192,7 @@ var createCronJobs = function createCronJobs(job) {
   var repeatMinutes = job.get('repeatMinutes');
   var jobName = job.get('jobName');
   var params = job.get('params');
+  var now = (0, _moment2.default)();
 
   // Launch just once
   if (!repeatMinutes) {
@@ -213,13 +214,19 @@ var createCronJobs = function createCronJobs(job) {
 
   var actualJob = new CronJob(cron, function () {
     // On tick
-    console.log('Tick!');
     performJob(jobName, params);
   }, null, // On complete
   false, // Start
   PARSE_TIMEZONE // Timezone
   );
 
+  // If startDate is before now, start the cron now
+  if ((0, _moment2.default)(startDate).isBefore(now)) {
+    actualJob.start();
+    return [actualJob];
+  }
+
+  // Otherwise, schedule a cron that is going to launch our actual cron at the time of the day
   var startCron = new CronJob(startDate, function () {
     // On tick
     console.log('Start the cron');
