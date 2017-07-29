@@ -205,10 +205,35 @@ var createCronJobs = function createCronJobs(job) {
     )];
   }
   // Periodic job. Create a cron to launch the periodic job a the start date.
-  var timeOfDay = (0, _moment2.default)(job.get('timeOfDay'), 'HH:mm:ss.Z');
+  var timeOfDay = (0, _moment2.default)(job.get('timeOfDay'), 'HH:mm:ss.Z').utc();
   var daysOfWeek = job.get('daysOfWeek');
   var cronDoW = daysOfWeek ? daysOfWeekToCronString(daysOfWeek) : '*';
-  var cron = '0 ' + timeOfDay.utc().minutes() + '/' + repeatMinutes + ' ' + timeOfDay.utc().hour() + ' * * ' + cronDoW;
+  var minutes = repeatMinutes % 60 + 7;
+  var hours = Math.floor(repeatMinutes / 60);
+
+  var cron = '0 ';
+  // Minutes
+  cron += timeOfDay.minutes() + '-59';
+  if (minutes) {
+    cron += '/' + minutes;
+  }
+  cron += ' ';
+
+  // Hours
+  cron += timeOfDay.hours() + '-23';
+  if (hours) {
+    cron += '/' + hours;
+  }
+  cron += ' ';
+
+  // Day of month
+  cron += '* ';
+
+  // Month
+  cron += '* ';
+
+  // Days of week
+  cron += cronDoW;
 
   console.log(jobName + ': ' + cron);
 
