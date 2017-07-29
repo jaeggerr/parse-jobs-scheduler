@@ -208,7 +208,7 @@ var createCronJobs = function createCronJobs(job) {
   var timeOfDay = (0, _moment2.default)(job.get('timeOfDay'), 'HH:mm:ss.Z').utc();
   var daysOfWeek = job.get('daysOfWeek');
   var cronDoW = daysOfWeek ? daysOfWeekToCronString(daysOfWeek) : '*';
-  var minutes = repeatMinutes % 60 + 7;
+  var minutes = repeatMinutes % 60;
   var hours = Math.floor(repeatMinutes / 60);
 
   var cron = '0 ';
