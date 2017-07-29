@@ -1,6 +1,6 @@
 {
   "name": "parse-jobs-scheduler",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Jobs scheduler for Parse Server",
   "main": "dist/index.js",
   "scripts": {

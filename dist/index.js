@@ -213,11 +213,11 @@ var createCronJobs = function createCronJobs(job) {
 
   var cron = '0 ';
   // Minutes
-  cron += timeOfDay.minutes() + '-59';
   if (minutes) {
-    cron += '/' + minutes;
+    cron += timeOfDay.minutes() + '-59/' + minutes + ' ';
+  } else {
+    cron += '0 ';
   }
-  cron += ' ';
 
   // Hours
   cron += timeOfDay.hours() + '-23';
