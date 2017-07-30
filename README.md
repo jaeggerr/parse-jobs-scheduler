@@ -6,7 +6,7 @@ This library is a minimalist tool that fetches all *_JobSchedule* objects and sc
 
 ## How to use it?
 
-### Install the library
+### Install the library
 
 ```sh
 $ npm install --save https://github.com/jaeggerr/parse-jobs-scheduler
