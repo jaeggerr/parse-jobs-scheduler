@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.recreateSchedule = undefined;
+exports.destroySchedule = exports.recreateSchedule = undefined;
 
 var _cron = require('cron');
 
@@ -165,7 +165,7 @@ var recreateScheduleForAllJobs = function () {
             results = _context2.sent;
 
 
-            destroyJobs();
+            destroySchedules();
 
             _iteratorNormalCompletion = true;
             _didIteratorError = false;
@@ -241,14 +241,14 @@ var recreateScheduleForAllJobs = function () {
  * @param {_JobSchedule} job The _JobSchedule
  */
 var recreateJobSchedule = function recreateJobSchedule(job) {
-  destroyJob(job.id);
+  destroySchedule(job.id);
   cronJobs[job.id] = createCronJobs(job);
 };
 
 /**
  * Stop all jobs and remove them from the list of jobs
  */
-var destroyJobs = function destroyJobs() {
+var destroySchedules = function destroySchedules() {
   var _iteratorNormalCompletion2 = true;
   var _didIteratorError2 = false;
   var _iteratorError2 = undefined;
@@ -257,7 +257,7 @@ var destroyJobs = function destroyJobs() {
     for (var _iterator2 = Object.keys(cronJobs)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
       var key = _step2.value;
 
-      destroyJob(key);
+      destroySchedule(key);
     }
   } catch (err) {
     _didIteratorError2 = true;
@@ -281,7 +281,7 @@ var destroyJobs = function destroyJobs() {
  * Destroy a planned cron job
  * @param {String} id The _JobSchedule id
  */
-var destroyJob = function destroyJob(id) {
+var destroySchedule = function destroySchedule(id) {
   var jobs = cronJobs[id];
   if (jobs) {
     var _iteratorNormalCompletion3 = true;
@@ -308,8 +308,9 @@ var destroyJob = function destroyJob(id) {
         }
       }
     }
+
+    delete cronJobs[id];
   }
-  delete cronJobs[id];
 };
 
 var createCronJobs = function createCronJobs(job) {
@@ -448,3 +449,4 @@ var performJob = function () {
 }();
 
 exports.recreateSchedule = recreateSchedule;
+exports.destroySchedule = destroySchedule;

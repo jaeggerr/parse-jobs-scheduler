@@ -21,14 +21,14 @@ const JobsScheduler = require('parse-jobs-scheduler')
 // Recreates all crons when the server is launched
 JobsScheduler.recreateSchedule()
 
-// Recreates all crons when a job schedule has changed
+// Recreates schedule when a job schedule has changed
 Parse.Cloud.afterSave('_JobSchedule', async (request) => {
-  JobsScheduler.recreateSchedule()
+  JobsScheduler.recreateSchedule(request.object)
 })
 
-// Recreates all crons when a job schedule was removed
+// Destroy schedule for removed job
 Parse.Cloud.afterDelete('_JobSchedule', async (request) => {
-  JobsScheduler.recreateSchedule()
+  JobsScheduler.destroySchedule(request.object)
 })
 ```
 
@@ -42,6 +42,5 @@ Parse.initialize('myAppId', null, 'masterKey')
 However, keep in mind that you can only manage one Parse server at once since the Parse object is a singleton.
 
  ## Future improvements
- * Only delete / recreate crons for the concerned *_JobSchedule* instead of recreating all crons
  * Add unit tests
  * Add support for Parse Webhooks if you prefer to handle crons on another server
