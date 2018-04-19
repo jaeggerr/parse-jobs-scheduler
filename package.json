@@ -11,12 +11,13 @@
   "author": "jaeggerr",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "cron": "^1.2.1",
+    "death": "^1.1.0",
     "moment": "^2.18.1",
     "parse": "^1.10.0",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1",
-    "babel-polyfill": "^6.23.0"
+    "request-promise": "^4.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

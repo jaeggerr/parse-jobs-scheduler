@@ -11,6 +11,10 @@ var _cron2 = _interopRequireDefault(_cron);
 
 require('babel-polyfill');
 
+var _death = require('death');
+
+var _death2 = _interopRequireDefault(_death);
+
 var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
@@ -447,6 +451,13 @@ var performJob = function () {
     return _ref3.apply(this, arguments);
   };
 }();
+
+/**
+ * Stop all cron jobs on process termination
+ */
+(0, _death2.default)(function () {
+  destroySchedules();
+});
 
 exports.recreateSchedule = recreateSchedule;
 exports.destroySchedule = destroySchedule;
